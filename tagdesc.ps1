@@ -1,5 +1,6 @@
 Set-PSDebug -Strict
 $count = 0
+$result = $null
 jj log --no-graph -r "latest(tags())::" | ForEach-Object {
     $count++
     if ( $count % 2 -ne 0 ){
@@ -15,5 +16,8 @@ jj log --no-graph -r "latest(tags())::" | ForEach-Object {
             }
         }
     }
+}
+if ( -not $result ){
+    exit 1
 }
 Write-Output $result
