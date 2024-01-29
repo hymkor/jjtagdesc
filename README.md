@@ -24,3 +24,20 @@ VERSION:=$(shell go run tagdesc.go)
 ```
 
 `tagdesc.go` is ignored by `go build` because `tagdesc.go` has the header `//go:build run` .
+
+### Example
+
+```
+$ cd ../gmnlisp.git/
+$ git describe --tags
+v0.4.1-19-gfd091d1
+$ go run ../tagdesc/tagdesc.go
+v0.4.1-19-gfd091d1
+$ cd ../gmnlisp.jj
+$ go run ../tagdesc/tagdesc.go
+v0.4.1-19-mwlxturo
+```
+
++ `gmnlisp.git` is the directory managed by Git.
++ `gmnlisp.jj` is the directory managed by Jujutsu.
+
