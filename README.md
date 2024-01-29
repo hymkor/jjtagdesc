@@ -14,6 +14,20 @@ Copy tagdesc.ps1 to your work directory and write On Makefile(GNU):
 VERSION:=$(shell powershell -noprofile -ex unrestricted -file tagdesc.ps1)
 ```
 
+#### Example
+
+```
+$ cd ../gmnlisp.git/
+$ tagdesc.ps1
+v0.4.1-19-gfd091d1
+$ cd ../gmnlisp.jj/
+$ tagdesc.ps1
+v0.4.1-19-mwlxturo
+```
+
++ `gmnlisp.git` is the directory managed by Git.
++ `gmnlisp.jj` is the directory managed by Jujutsu.
+
 Go version
 ----------
 
@@ -40,4 +54,3 @@ v0.4.1-19-mwlxturo
 
 + `gmnlisp.git` is the directory managed by Git.
 + `gmnlisp.jj` is the directory managed by Jujutsu.
-
