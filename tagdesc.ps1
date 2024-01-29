@@ -1,4 +1,5 @@
 Set-PSDebug -Strict
+$result = "v0.0.0"
 $nlines = 0
 $ncommits = 0
 jj log --no-graph -r 'latest(tags()):: ~ description(exact:"")' | ForEach-Object {
