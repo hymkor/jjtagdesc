@@ -43,24 +43,26 @@ func mains() error {
 	if dir, err := os.Stat(".git"); err == nil && dir.IsDir() {
 		return run("git", "describe", "--tags")
 	}
-	count := 0
+	nlines := 0
+	ncommits := 0
 	var current string
 	result := "v0.0.0"
 	err := quote([]string{"jj", "log", "--no-graph", "-r", "latest(tags()):: ~ description(exact:\"\")"},
 		func(line string) error {
-			count++
-			if count%2 != 0 {
+			nlines++
+			if nlines%2 != 0 {
 				fields := strings.Fields(line)
-				if count == 1 {
+				if ncommits == 0 {
 					current = fields[0]
 				}
 				if len(fields) == 7 {
-					if count == 1 {
+					if ncommits == 0 {
 						result = fields[5]
 					} else {
-						result = fmt.Sprintf("%s-%d-%s", fields[5], count, current)
+						result = fmt.Sprintf("%s-%d-%s", fields[5], ncommits, current)
 					}
 				}
+				ncommits++
 			}
 			return nil
 		},
