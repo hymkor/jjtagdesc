@@ -1,4 +1,8 @@
 Set-PSDebug -Strict
+If ( (Test-Path .git) ){
+    git describe --tags
+    exit 0
+}
 $result = "v0.0.0"
 $nlines = 0
 $ncommits = 0
