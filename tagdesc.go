@@ -5,6 +5,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"strings"
@@ -33,6 +34,7 @@ func quote(args []string, f func(string) error) error {
 	for sc.Scan() {
 		//println(sc.Text())
 		if err := f(sc.Text()); err != nil {
+			io.Copy(io.Discard, r)
 			return err
 		}
 	}
