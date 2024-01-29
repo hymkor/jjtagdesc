@@ -46,7 +46,7 @@ func mains() error {
 	count := 0
 	var current string
 	result := "v0.0.0"
-	err := quote([]string{"jj", "log", "--no-graph", "-r", "latest(tags())::"},
+	err := quote([]string{"jj", "log", "--no-graph", "-r", "latest(tags()):: ~ description(exact:\"\")"},
 		func(line string) error {
 			count++
 			if count%2 != 0 {
